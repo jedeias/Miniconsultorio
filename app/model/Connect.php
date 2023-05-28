@@ -1,5 +1,7 @@
 <?php  
 
+require_once ("../config/host.php");
+
 Class Connect extends Host{
     private $conn;
     public function __construct()
@@ -24,5 +26,7 @@ Class Connect extends Host{
         $this->conn = null;
     }
 }
+
+$conn = new Connect();
 
 ?>

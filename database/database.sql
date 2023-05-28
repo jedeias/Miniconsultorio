@@ -32,6 +32,13 @@ create table patient(
     foreign key (FkPsychologist) references psychologist(PkPsychologist)
 )CHARACTER SET utf8 COLLATE UTF8_UNICODE_CI;
 
+
+create table secretary(
+    PkSecretary int not null primary key auto_increment,
+    FkPeople int not NULL,
+    foreign key (FKPeople) references people(PkPeople)
+)CHARACTER SET utf8 COLLATE UTF8_UNICODE_CI;
+
 create table notesPatient(
     PkNotesPatient int not null primary key auto_increment,
     FkPatient int not null,

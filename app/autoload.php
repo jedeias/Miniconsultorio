@@ -24,7 +24,6 @@ foreach($dirs as $dir){
         require_once($file);
 
     }
-
 }
 
 }

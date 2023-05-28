@@ -1,4 +1,4 @@
-# A coop project for stud a architecture Solid
+# A cooperative project to study the Solid architecture.
 
 # members <a href="https://github.com/DevAlexBreno">DevAlexBreno</a> And <a href="https://github.com/jedeias">JedeiasLuiz </a>
 

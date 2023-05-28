@@ -6,7 +6,7 @@
 
 <section display:flex;>
 
-    <p> Why we chose this theme:<br>
-    We decided to work on this theme because it was used in the final project of the course.</p>
-
+    Why we chose this theme:
+    We decided to work on this theme because it was used in the final project of the course.
+    In other words, this would be a way to improve the project as a REWORK.
 </section>

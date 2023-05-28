@@ -7,6 +7,7 @@ Class Patient extends People implements patientInterface{
         $this->psychologist = $psychologist;
     }
 
+    //specials Methods
 	public function getPsychologist(): Psychologist {
 		return $this->psychologist;
 	}
@@ -15,6 +16,44 @@ Class Patient extends People implements patientInterface{
 		$this->psychologist = $psychologist;
 		return $this;
 	}
+
+    // methods of people
+	public function getName(){
+		return $this->name;
+	}
+	public  function setName($name):self {
+		$this->name = $name;
+		return $this;
+	}
+	public function getEmail(){
+        return $this->email;
+	}
+	public function setEmail($email):self{
+		$this->email = $email;
+		return $this;
+	}
+	public function getDateOfBirth(){
+        return $this->dateOfBirth;
+	}
+	public function setDateOfBirth($dateOfBirth):self{
+		$this->$dateOfBirth = $dateOfBirth;
+		return $this;
+	}
+	public function getGender(){
+        return $this->gender;
+	}
+	public function setGender($gender):self{
+        $this->gender = $gender;
+        return $this;
+	}
+	public function getPassword(){
+        return $this->password;
+	}
+	public function setPassword($password):self{
+        $this->password = $password;
+        return $this;
+	}
+
 }
 
 

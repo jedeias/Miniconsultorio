@@ -8,7 +8,7 @@ class RepositoryFlags implements RepositoryFlagsInterface{
         $this->conn = new Connect();
     }
 
-    public function save(object $object){
+    public function save(Flags $object){
         $query = "INSERT INTO flags (dangerLevels, Color) 
         VALUES (:dangerLevels, :color)";
 
@@ -27,7 +27,7 @@ class RepositoryFlags implements RepositoryFlagsInterface{
         }
 
     }
-    public function delete(object $object){
+    public function delete(Flags $object){
 
         $query = "DELETE FROM flags WHERE dangerLevels = :dangerLevels and Color = :color";
 
@@ -46,7 +46,7 @@ class RepositoryFlags implements RepositoryFlagsInterface{
         }
         
     }
-    public function update(object $object){
+    public function update(Flags $object){
 
         $query = "UPDATE flags Set color = :color where dangerLevels = :dangerLevels";
 
@@ -106,7 +106,6 @@ class RepositoryFlags implements RepositoryFlagsInterface{
         }
 
     }
-
 
 }
 

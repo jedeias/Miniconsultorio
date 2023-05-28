@@ -1,6 +1,6 @@
 <?php 
 
-Class Patient extends People{
+Class Patient extends People implements patientInterface{
     private Psychologist $psychologist;
 
     public function __construct($psychologist){

@@ -1,6 +1,6 @@
 <?php 
 
-Class Psychologist extends People{
+Class Psychologist extends People implements psychologistInterface{
     private $crm;
 
     public function __construct($crm){

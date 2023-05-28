@@ -1,6 +1,6 @@
 <?php   
 
-Class RepositoryPatient extends Reposytory{
+Class RepositoryPatient extends Reposytory implements repositoryReadInterface{
 
     private Patient $patient;
 
@@ -18,6 +18,19 @@ Class RepositoryPatient extends Reposytory{
     public function delete(){
         
     }
+
+    public function getByEmail(Patient $patient){
+        
+    }
+
+    public function getById(Patient $patient){
+        
+    }
+
+    public function getTableDates(){
+        
+    }
+
 
 }
 

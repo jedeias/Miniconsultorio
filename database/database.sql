@@ -26,7 +26,7 @@ create table psychologist(
     foreign key (FkPeople) references people(PkPeople)
 )CHARACTER SET utf8 COLLATE UTF8_UNICODE_CI;
 
-desc psychologists;
+desc psychologist;
 
 create table patient(
     PkPatient int not null primary key auto_increment,
@@ -49,10 +49,14 @@ desc secretary;
 
 create table flags(
     PkFlags int not null primary key auto_increment,
-    dangerLevels int not null
+    dangerLevels INT NOT NULL,
+    color VARCHAR(25) NOT NULL UNIQUE key
 )CHARACTER SET utf8 COLLATE UTF8_UNICODE_CI;
 
-desc flags
+INSERT INTO flags
+VALUES (DEFAULT, 1, "white");
+
+desc flags;
 
 create table notesPatient(
     PkNotesPatient int not null primary key auto_increment,
@@ -74,4 +78,6 @@ create table notesPsychologist(
     foreign key (FkNotesPatient) references notesPatient(PkNotesPatient)
 )CHARACTER SET utf8 COLLATE UTF8_UNICODE_CI;
 
-desc notesPyschologist;
+desc notesPsychologist;
+
+SELECT * FROM flags;

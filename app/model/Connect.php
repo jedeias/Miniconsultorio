@@ -1,6 +1,6 @@
 <?php  
 
-require_once ("../config/host.php");
+require_once ($_SERVER['DOCUMENT_ROOT']."/miniconsultorio/app/config/host.php");
 
 Class Connect extends Host{
     private $conn;
@@ -21,12 +21,15 @@ Class Connect extends Host{
             echo 'Error in this connect with data base: ' . $e->getMessage();
         }
     }
+
+	public function getConn() {
+		return $this->conn;
+	}
+
     public function __destruct()
     {
         $this->conn = null;
     }
 }
-
-$conn = new Connect();
 
 ?>

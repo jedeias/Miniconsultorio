@@ -2,11 +2,18 @@
 function autoload($className){
 
 $dirs = array(  "controller/",
-                "model/",
                 "view/",
+                "model/",
                 "../controller/",
+                "../view/",
                 "../model/",
-                "../view/");
+                "model/flags/",
+                "model/notes/",
+                "model/repository/",
+                "model/repository/repositoryFlags/",
+                "model/repository/repositoryNotes/",
+
+            );
 
 foreach($dirs as $dir){
 
@@ -15,8 +22,9 @@ foreach($dirs as $dir){
     if(file_exists($file)){
         
         require_once($file);
-    
+
     }
+
 }
 
 }

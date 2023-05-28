@@ -7,7 +7,7 @@ class Session implements sessionInterface{
     }
 
     public function get($value){
-        if ($_SESSION["$value"] == null){
+        if ($_SESSION["$value"] === null){
             return null;
         }else{
             return $_SESSION["$value"];

@@ -2,7 +2,7 @@
 
 interface SessionInterface{
 
-    public function get();
+    public function get($value);
 
     public function set($session, $value);
 

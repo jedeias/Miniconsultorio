@@ -3,8 +3,13 @@
 Class Psychologist extends People implements psychologistInterface{
     private $crm;
 
-    public function __construct($crm){
+    public function __construct($crm, $name, $email, $dateOfBirth, $gender, $password){
         $this->crm = $crm;
+		$this->setName($name);
+		$this->setEmail($email);
+		$this->setDateOfBirth($dateOfBirth);
+		$this->setGender($gender);
+		$this->setPassword($password);
     }
 
     //specials methods

@@ -2,27 +2,27 @@
 
 Class ReposytoryPsychologist extends Reposytory implements repositoryReadInterface{
 
-    private Psychologist $psychologist;
+    private $conn;
 
-    public function __construct($psychologist){
-        $this->psychologist = $psychologist;
+    public function __construct(){
+        $this->conn = new Connect;
     }
-    public function save(){
-
-    }
-
-    public function update(){
-
-    }
-    public function delete(){
+    public function save(Psychologist $psychologist){
 
     }
 
-    public function getByEmail(psychologist $psychologist){
+    public function update(Psychologist $psychologist){
+
+    }
+    public function delete(Psychologist $psychologist){
+
+    }
+
+    public function getByEmail(Psychologist $psychologist){
         
     }
 
-    public function getById(psychologist $psychologist){
+    public function getById(Psychologist $psychologist){
         
     }
 

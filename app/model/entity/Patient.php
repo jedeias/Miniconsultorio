@@ -1,10 +1,10 @@
 <?php 
 
-Class Psychologist extends People implements psychologistInterface{
-    private $crm;
+Class Patient extends People implements patientInterface{
+    private Psychologist $psychologist;
 
-    public function __construct($crm, $name, $email, $dateOfBirth, $gender, $password){
-        $this->crm = $crm;
+    public function __construct($psychologist, $name, $email, $dateOfBirth, $gender, $password){
+        $this->setPsychologist($psychologist);
 		$this->setName($name);
 		$this->setEmail($email);
 		$this->setDateOfBirth($dateOfBirth);
@@ -12,18 +12,18 @@ Class Psychologist extends People implements psychologistInterface{
 		$this->setPassword($password);
     }
 
-    //specials methods
-	public function getCrm() {
-		return $this->crm;
+    //specials Methods
+	public function getPsychologist(): Psychologist {
+		return $this->psychologist;
 	}
 
-	public function setCrm($crm): self {
-		$this->crm = $crm;
+	public function setPsychologist(Psychologist $psychologist): self {
+		$this->psychologist = $psychologist;
 		return $this;
 	}
-
+	
     // methods of people
-    public function getName(){
+	public function getName(){
 		return $this->name;
 	}
 	public  function setName($name):self {
@@ -41,7 +41,7 @@ Class Psychologist extends People implements psychologistInterface{
         return $this->dateOfBirth;
 	}
 	public function setDateOfBirth($dateOfBirth):self{
-		$this->$dateOfBirth = $dateOfBirth;
+		$this->dateOfBirth = $dateOfBirth;
 		return $this;
 	}
 	public function getGender(){
@@ -58,6 +58,8 @@ Class Psychologist extends People implements psychologistInterface{
         $this->password = $password;
         return $this;
 	}
+
 }
+
 
 ?>

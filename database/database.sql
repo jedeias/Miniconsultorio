@@ -1,4 +1,3 @@
--- SQLBook: Code
 DROP DATABASE clinic;
 
 create database clinic
@@ -83,6 +82,13 @@ desc notesPsychologist;
 
 SELECT * FROM flags;
 
+USE clinic;
+
 INSERT INTO people (PkPeople, name, email, dateOfBirth, sex, password) VALUES (DEFAULT, 'alex', 'teste@email.com','1800/05/05', 'M', '1234');
 
-INSERT INTO psychologist
+DELETE FROM people WHERE email = 'mariaSilva@gmail.com';
+
+INSERT INTO psychologist (FkPeople, CRM)
+VALUES(1, 321546);
+
+SELECT * from psychologist;

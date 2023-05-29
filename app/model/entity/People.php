@@ -1,11 +1,11 @@
 <?php  
 
 abstract class People{
-    private $name;
-    private $email;
-    private $dateOfBirth;
-    private $gender;    
-    private $password;    
+    protected $name;
+    protected $email;
+    protected $dateOfBirth;
+    protected $gender;    
+    protected $password;    
 
 	public abstract function getName();
 	public abstract  function setName($name);

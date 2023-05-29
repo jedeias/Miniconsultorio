@@ -1,13 +1,13 @@
 <?php   
 
-Class RepositoryPatient extends Reposytory implements repositoryReadInterface{
+Class RepositoryPsychologist extends Reposytory implements repositoryReadInterface{
 
     private $conn;
 
     public function __construct(){
         $this->conn = new Connect;
     }
-    public function save(object $patient){
+    public function save(object $psychologist){
         $query =    "INSERT INTO people (name, email, dateOfBirth, sex, password) 
                     VALUES (:name, :email, :dateOfBirth, :gender, :password)";
     
@@ -15,27 +15,23 @@ Class RepositoryPatient extends Reposytory implements repositoryReadInterface{
             
             $query = $this->conn->getConn()->prepare($query);
 
-            $query->bindValue(':name', $patient->getName());
-            $query->bindValue(':email', $patient->getEmail());
-            $query->bindValue(':dateOfBirth', $patient->getDateOfBirth());
-            $query->bindValue(':gender', $patient->getGender());
-            $query->bindValue(':password', $patient->getPassword());
-
+            $query->bindValue(':name', $psychologist->getName());
+            $query->bindValue(':email', $psychologist->getEmail());
+            $query->bindValue(':dateOfBirth', $psychologist->getDateOfBirth());
+            $query->bindValue(':gender', $psychologist->getGender());
+            $query->bindValue(':password', $psychologist->getPassword());
+            
             $query->execute();
 
             $pkPeople = $this->conn->getConn()->lastInsertId(); 
 
-            $query =    "INSERT INTO patient (FkPeople, FkPsychologist)
-                        VALUES(:FkPeople, :FkPsychologist)";
+            $query =    "INSERT INTO psychologist (FkPeople, CRM)
+                        VALUES(:FkPeople, :CRM)";
 
             $query = $this->conn->getConn()->prepare($query);
 
-            $repositoryPsychologist = new RepositoryPsychologist();
-            $FkPsychologist = $repositoryPsychologist->getByEmail($patient->getPsychologist());
-            var_dump($patient->getPsychologist(), $FkPsychologist);
-
             $query->bindValue(':FkPeople', $pkPeople);
-            $query->bindValue(':FkPsychologist', $FkPsychologist['PkPsychologist']);
+            $query->bindValue(':CRM', $psychologist->getCRM());
             $query->execute();
 
         }catch(PDOException $e){
@@ -44,7 +40,7 @@ Class RepositoryPatient extends Reposytory implements repositoryReadInterface{
     
     }
 
-    public function update(object $patient) {
+    public function update(object $psychologist) {
         $query = "UPDATE people 
                   SET name = :name, 
                       email = :email, 
@@ -55,48 +51,43 @@ Class RepositoryPatient extends Reposytory implements repositoryReadInterface{
     
         try {
             $stmt = $this->conn->getConn()->prepare($query);
-            
-            $pkPeople = $this->getByEmail($patient)['PkPeople'];
     
-            $stmt->bindValue(':PkPeople', $pkPeople);
-            $stmt->bindValue(':name', $patient->getName());
-            $stmt->bindValue(':email', $patient->getEmail());
-            $stmt->bindValue(':dateOfBirth', $patient->getDateOfBirth());
-            $stmt->bindValue(':gender', $patient->getGender());
-            $stmt->bindValue(':password', $patient->getPassword());
+            $stmt->bindValue(':PkPeople', $this->getByEmail($psychologist)['PkPeople']);
+            $stmt->bindValue(':name', $psychologist->getName());
+            $stmt->bindValue(':email', $psychologist->getEmail());
+            $stmt->bindValue(':dateOfBirth', $psychologist->getDateOfBirth());
+            $stmt->bindValue(':gender', $psychologist->getGender());
+            $stmt->bindValue(':password', $psychologist->getPassword());
     
             $stmt->execute();
     
-            $query2 = "UPDATE patient
-                       SET FkPsychologist = :FkPsychologist
+            $query2 = "UPDATE psychologist
+                       SET CRM = :CRM  
                        WHERE FkPeople = :FkPeople";
     
             $stmt2 = $this->conn->getConn()->prepare($query2);
-
-            $repositoryPsychologist = new ReposytoryPsychologist();
-            $FkPsychologist = $repositoryPsychologist->getByEmail($patient->getPsychologist());
     
-            $stmt2->bindValue(':FkPeople', $pkPeople);
-            $stmt2->bindValue(':FkPsychologist', $FkPsychologist);
+            $stmt2->bindValue(':FkPeople', $this->getByEmail($psychologist)['PkPeople']);
+            $stmt2->bindValue(':CRM', $psychologist->getCRM());
     
             $stmt2->execute();
     
         } catch(PDOException $e) {
-            echo "Update error: " . $e->getMessage();
+            echo "Insert error: " . $e->getMessage();
         }
     }
-    public function delete(object $patient){
-        $query = "DELETE FROM patient WHERE FkPeople = :FkPeople";
+    public function delete(object $psychologist){
+        $query = "DELETE FROM psychologist WHERE FkPeople = :FkPeople";
 
         try{
     
             $query = $this->conn->getConn()->prepare($query);
-            $query->bindValue(':FkPeople', $this->getByEmail($patient)['PkPeople']);
+            $query->bindValue(':FkPeople', $this->getByEmail($psychologist)['PkPeople']);
             $query->execute();
 
             $query = "DELETE FROM people WHERE PkPeople = :PkPeople";
             $query = $this->conn->getConn()->prepare($query);
-            $query->bindValue(':PkPeople', $this->getByEmail($patient)['PkPeople']);
+            $query->bindValue(':PkPeople', $this->getByEmail($psychologist)['PkPeople']);
             $query->execute();
 
         }catch(PDOException $e){
@@ -107,13 +98,15 @@ Class RepositoryPatient extends Reposytory implements repositoryReadInterface{
 
     }
 
-    public function getByEmail(object $patient){
-        $query = "SELECT * FROM people WHERE email = :email";
+    public function getByEmail(object $psychologist){
+        $query = "SELECT * FROM psychologist 
+        INNER JOIN people ON (people.PkPeople = psychologist.FkPeople)  
+        WHERE email = :email";
         
         try{
     
             $query = $this->conn->getConn()->prepare($query);
-            $query->bindValue(':email', $patient->getEmail());
+            $query->bindValue(':email', $psychologist->getEmail());
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);            
             return $result[0];
@@ -159,6 +152,7 @@ Class RepositoryPatient extends Reposytory implements repositoryReadInterface{
             echo"erro On consult Table psychologist" . $e->getMessage();
         }
     }
+        
 
 }
 

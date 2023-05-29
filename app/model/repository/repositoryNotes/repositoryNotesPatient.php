@@ -9,19 +9,19 @@ class repositoryNotesPatient implements RepositoryNotesInterface{
         $this->conn = $this->conn->getConn();
     }
 
-    public function save(Psychologist $obj){
+    public function save(Patient $obj){
         
     }
-    public function update(Psychologist $obj){
+    public function update(Patient $obj){
 
     }
-    public function delete(Psychologist $obj){
+    public function delete(Patient $obj){
 
     }
-    public function getByID(Psychologist $obj){
+    public function getByID(Patient $obj){
 
     }
-    public function getByPeople(Psychologist $obj){
+    public function getByPeople(Patient $obj){
 
     }
     public function getTableDates(){

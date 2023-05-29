@@ -12,6 +12,7 @@ $dirs = array(  "controller/",
                 "model/repository/",
                 "model/repository/repositoryFlags/",
                 "model/repository/repositoryNotes/",
+                "model/entity/"
 
             );
 

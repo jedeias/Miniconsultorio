@@ -73,7 +73,7 @@ Class RepositoryPatient extends Reposytory implements repositoryReadInterface{
     
             $stmt2 = $this->conn->getConn()->prepare($query2);
 
-            $repositoryPsychologist = new ReposytoryPsychologist();
+            $repositoryPsychologist = new RepositoryPsychologist();
             $FkPsychologist = $repositoryPsychologist->getByEmail($patient->getPsychologist());
     
             $stmt2->bindValue(':FkPeople', $pkPeople);
@@ -108,7 +108,8 @@ Class RepositoryPatient extends Reposytory implements repositoryReadInterface{
     }
 
     public function getByEmail(object $patient){
-        $query = "SELECT * FROM people WHERE email = :email";
+        $query = "SELECT * FROM patient 
+        INNER JOIN people on (patient.FkPeople = people.PkPeople ) WHERE email = :email";
         
         try{
     

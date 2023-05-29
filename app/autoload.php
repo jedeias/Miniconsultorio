@@ -1,6 +1,5 @@
 <?php
-function autoload($className)
-{
+function autoload($className){
     $dirs = array(
         "controller/",
         "view/",
@@ -17,6 +16,7 @@ function autoload($className)
         "model/useCases/entities/flags/",
         "model/useCases/repository/repositoryFlags/",
         "model/useCases/repository/repositoryNotes/",
+        "model/useCases/people/",
         "model/useCases/repository/"
     );
 

@@ -119,13 +119,16 @@ Class RepositoryPsychologist extends Reposytory implements repositoryReadInterfa
     }
 
     public function getById(int $PkPeople){
-        $query = "SELECT * FROM people WHERE PkPeople = :PkPeople";
+        $query =    "SELECT * FROM psychologist 
+                    INNER JOIN people ON (people.PkPeople = psychologist.FkPeople) 
+                    WHERE PkPeople = :PkPeople";
         
         try{
     
             $query = $this->conn->getConn()->prepare($query);
             $query->bindValue(':PkPeople', $PkPeople);
             $query->execute();
+            
             $result = $query->fetchAll(PDO::FETCH_ASSOC);            
             
             return $result[0];

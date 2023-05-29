@@ -5,6 +5,11 @@ class NotesPatient extends Notes{
     private $notes;
     private Patient $people;
 
+    public function __construct(Patient $people, $notes) {
+        $this->setPeople($people);
+        $this->setNotes($notes);
+    }
+
     public function getNotes(){
         return $this->notes;
     }
@@ -16,7 +21,7 @@ class NotesPatient extends Notes{
         return $this->people;
     }
 
-    public function setPeople(Patient $people):self{
+    public function setPeople(object $people):self{
         $this->people = $people;
         return $this;
     }

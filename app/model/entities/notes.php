@@ -11,7 +11,7 @@ abstract class Notes{
 
     public abstract function getPeople();
 
-    public abstract function setPeople($people);
+    public abstract function setPeople(object $people);
 
 
 }
